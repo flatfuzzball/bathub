@@ -1,0 +1,15 @@
+<!doctype html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>{{ login }}</title>
+</head>
+<body>
+  <p style="float: right; position: relative; bottom: 30px;"><a href="/">bathub</a> · <a href="{{ html_url }}">view on github</a></p>
+  <img style="float: left;" width="64px" height="64px" src="{{ avatar_url }}">
+  <h1>{{ name }}</h1>
+  <h3 style="position: relative; bottom: 30px; left: 66px; color: dimgray;"><em>{{ login }}</em></h3>
+  <p><strong>bio:</strong><br>{{ bio }}</p>
+  <p style="color: dimgray;"><strong style="color: black;">{{ followers }}</strong> followers · <strong style="color: black;">{{ following }}</strong> following · created at <strong style="color: black;">{{ created_at }}</strong></p>
+  <h3><a href="/{{ user }}/page=1&tab=repositories">repositories ({{ public_repos }})</a></h3>
+</body>
