@@ -1,0 +1,18 @@
+<!doctype html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>{{ user }}/{{ repo }}</title>
+</head>
+<body>
+  <p style="float: right; position: relative; bottom: 30px;"><a href="/">bathub</a> · <a href='{{ req["html_url"] }}'>view on github</a></p>
+  <h1><a href="/{{ user }}">{{ user }}</a>/<a href='/{{ req["full_name"] }}'>{{ req["name"] }}</a>{% if req["archived"] %} (archived){% endif %}</h1>
+  <p><em><strong>{{ req["language"] }}</strong> · <strong>{{ req["stargazers_count"] }}</strong> stargazers · <strong>{{ req["subscribers_count"] }}</strong> watching · <strong>{{ req["forks"] }}</strong> forks {% if req["fork"] %} · forked from <a href='/{{ req["parent"]["full_name"] }}'>{{ req["parent"]["full_name"] }}</a>{% endif %} · {{ req["license"]["name"] }}</em></p>
+  <p>{{ req["description"] }}</p>
+  {% if req["homepage"] %}<p><a href='{{ req["homepage"] }}'>{{ req["homepage"] }}</a></p>{% endif %}
+  <button type="button"><a href='https://github.com/{{ req["full_name"] }}/tarball/{{ req["default_branch"] }}'>download source (tarball)</a></button>
+  <p><a href='/{{ req["full_name"] }}/tree/{{ req["default_branch"] }}'>source tree</a></p>
+  <p><a href='/{{ req["full_name"] }}/releases'>releases</a></p>
+  <p><a href='/{{ req["full_name"] }}/tags'>tags</a></p>
+  {% if readme != "nope" %}<h3>readme.md:</h3>{{ readme|safe }}{% endif %}
+</body>

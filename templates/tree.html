@@ -1,0 +1,17 @@
+<!doctype html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>{{ repo }}/{{ path }} at {{ branch }}</title>
+</head>
+<body>
+    <p style="position: relative; bottom: 30px; float: right;"><a href="/">bathub</a> · <a href="https://github.com/{{ user }}/{{ repo }}/tree/{{ branch }}/{{ path }}">view on github</a></p>
+    <h1><a href="/{{ user }}/{{ repo }}/tree/{{ branch }}">{{ repo }}</a>/{{ path }}</h1>
+    {% for file in req["tree"] %}
+      {% if file["type"] == "blob" %}
+        <li><a href='https://raw.githubusercontent.com/{{ user }}/{{ repo }}/{{ branch }}/{{ path }}/{{ file["path"] }}'>{{ file["path"] }}</a><em style="color: dimgray; float: right;">{{ file["size"] / 1000 }} kb</em></li>
+      {% else %}
+        <li><a href='/{{ user }}/{{ repo }}/tree/{{ branch }}/{{ path }}/{{ file["path"]}}'>{{ file["path"] }}/</a></li>
+      {% endif %}
+    {% endfor %}
+</body>

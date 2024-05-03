@@ -1,0 +1,20 @@
+<!doctype html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>{{ user }}/repos</title>
+</head>
+<body>
+  <p style="float: right; position: relative; bottom: 30px;"><a href="/">bathub</a> · <a href="https://github.com/{{ user }}?tab=repositories">view on github</a></p>
+  <h1><a href="/{{ user }}">{{ user }}</a>'s public repositories</h1>
+  {% for repo in req %}
+    <h2><a href='/{{ user }}/{{ repo["name"] }}'>{{ repo["name"] }}</a></h2>
+    <p>{{ repo["description"] }}</p>
+    <p><em><strong>{{ repo["language"] }}</strong> · updated on {{ repo["updated_at"]|strptime }} · <strong>{{ repo["stargazers_count"] }}</strong> stargazers{% if repo["fork"] %} · fork{% endif %}</em></p>
+  {% endfor %}
+  {% if page == 1 %}
+    <p style="color: dimgray;">< previous · <a href="/{{ user }}/page={{ page + 1 }}&tab=repositories">next ></a></p>
+  {% else %}
+    <p><a href="/{{ user }}/page={{ page - 1 }}&tab=repositories">< previous</a> · <a href="/{{ user }}/page={{ page + 1 }}&tab=repositories">next ></a></p>
+  {% endif %}
+</body>

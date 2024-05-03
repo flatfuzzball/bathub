@@ -1,0 +1,23 @@
+<!doctype html>
+<head>
+  <link rel="stylesheet" href="/static/style.css">
+  <title>tags for {{ user }}/{{ repo }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  {% if req %}
+    <p style="position: relative; bottom: 30px; float: right;"><a href="/">bathub</a> · <a href='https://github.com/{{ user }}/{{ repo }}/tags?page={{ page }}'>view on github</a></p>
+    <h1>tags</h1>
+    {% for tag in req %}
+      <h2>{{ tag["name"] }}</h2>
+      <li><a href='{{ tag["tarball_url"] }}'>source code (tarball)</a></li>
+    {% endfor %}
+    {% if page == 1 %}
+      <p style="color: dimgray;">< previous · <a href="/{{ user }}/{{ repo }}/tags/page={{ page + 1 }}">next ></a></p>
+    {% else %}
+      <p><a href="/{{ user }}/{{ repo }}/tags/page={{ page - 1 }}">< previous</a> · <a href="/{{ user }}/{{ repo }}/tags/page={{ page + 1 }}">next ></a></p>
+    {% endif %}
+  {% else %}
+    <h1>no tags :(</h1>
+  {% endif %}
+</body>
