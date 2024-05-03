@@ -6,7 +6,7 @@ import markdown
 
 app = Flask(__name__)
 
-token = "add your token here"
+token = os.environ.get('TOKEN')  # replace with your token
 
 @app.template_filter("md")
 def md(input):
